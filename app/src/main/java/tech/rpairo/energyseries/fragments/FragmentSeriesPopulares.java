@@ -2,7 +2,6 @@ package tech.rpairo.energyseries.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,7 @@ import tech.rpairo.energyseries.R;
 /**
  * Created by Raul on 24/6/16.
  */
-public class FragmentSeriesPopulares extends Fragment {
+public class FragmentSeriesPopulares extends FragmentSeriesMaster {
 
     //region Constructores
     @Nullable
@@ -24,6 +23,10 @@ public class FragmentSeriesPopulares extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        this.prepararRecycler(view, R.id.recycler_series_populares);
+
+        this.request(this.SERIES_POPULARES);
     }
     //endregion
 }

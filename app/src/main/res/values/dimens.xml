@@ -1,4 +1,12 @@
 <resources>
+
     <dimen name="elevation_appbar">10dp</dimen>
     <dimen name="fab_elevation">10dp</dimen>
+    <dimen name="padding_recycler_series">10dp</dimen>
+
+    <!-- Cardview -->
+    <dimen name="cardview_pelicula_height">250dp</dimen>
+    <dimen name="cardview_pelicula_width">172dp</dimen>
+    <dimen name="elevation_cardview_series">10dp</dimen>
+
 </resources>

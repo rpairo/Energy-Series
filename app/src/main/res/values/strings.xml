@@ -1,4 +1,5 @@
 <resources>
+
     <string name="app_name">Energy Series</string>
     <string name="item_series">Series</string>
     <string name="navigation_view_open">Abriendo Menú</string>
@@ -8,4 +9,5 @@
     <string name="tab_series_populares">Populares</string>
     <string name="tab_series_en_emision">En emisión</string>
     <string name="tab_series_mejor_valoradas">Mejor valoradas</string>
+
 </resources>
