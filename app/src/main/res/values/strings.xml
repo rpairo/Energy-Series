@@ -3,4 +3,9 @@
     <string name="item_series">Series</string>
     <string name="navigation_view_open">Abriendo Menú</string>
     <string name="navigation_view_close">Cerrando Menú</string>
+    <string name="fab_buscar">Buscar</string>
+    <string name="fab_voz">Asistente</string>
+    <string name="tab_series_populares">Populares</string>
+    <string name="tab_series_en_emision">En emisión</string>
+    <string name="tab_series_mejor_valoradas">Mejor valoradas</string>
 </resources>

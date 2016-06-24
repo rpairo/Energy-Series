@@ -35,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
         if (navigationView != null) {
             this.prepararNavigationView(navigationView);
 
+            // Seleccionar item por defecto
+            seleccionarItem(navigationView.getMenu().getItem(0));
         }
     }
     //endregion
