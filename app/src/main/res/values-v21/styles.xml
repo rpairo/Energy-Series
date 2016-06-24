@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Establece el color primario en la barra de navegación en caso de ser una versión igual o superior a Lollipop -->
+    <style name="AppTheme.Material" parent="AppTheme">
+        <item name="android:navigationBarColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="Theme.Energy" parent="AppTheme.Material" />
+
+</resources>
