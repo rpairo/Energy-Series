@@ -55,8 +55,8 @@ public class MainActivity extends AppCompatActivity {
                     this,
                     drawerLayout,
                     toolbar,
-                    R.string.navigation_view_open,
-                    R.string.navigation_view_close);
+                    R.string.navigationview_open,
+                    R.string.navigationview_close);
 
             this.drawerLayout.addDrawerListener(toggle);
             toggle.syncState();

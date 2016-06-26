@@ -1,17 +1,7 @@
 <resources>
 
-    <!-- Toolbar -->
-    <dimen name="appbar_elevation">10dp</dimen>
-
-    <!-- FloatActionButton -->
-    <dimen name="fab_elevation">10dp</dimen>
-    <dimen name="fab_margin">16dp</dimen>
-    <dimen name="fab_translation">12dp</dimen>
-
     <!-- Recycler -->
     <dimen name="recycler_series_padding">10dp</dimen>
-    <dimen name="recycler_search_inset">5dp</dimen>
-    <dimen name="recycler_search_padding_top">60dp</dimen>
 
     <!-- Cardview -->
     <dimen name="cardview_series_height">250dp</dimen>

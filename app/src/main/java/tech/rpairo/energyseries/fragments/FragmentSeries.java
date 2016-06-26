@@ -1,5 +1,6 @@
 package tech.rpairo.energyseries.fragments;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,6 +16,7 @@ import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
 
 import tech.rpairo.energyseries.R;
+import tech.rpairo.energyseries.activities.SearchActivity;
 import tech.rpairo.energyseries.adapters.AdapterFragmentsSeries;
 
 /**
@@ -57,14 +59,6 @@ public class FragmentSeries extends Fragment {
             }
         });
 
-        fab = (FloatingActionButton) view.findViewById(R.id.fab_asistente_series);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                asistente();
-            }
-        });
-
         return view;
     }
     //endregion
@@ -99,10 +93,8 @@ public class FragmentSeries extends Fragment {
     //region FloatActionButton
     private void buscar() {
         this.toogleFAB();
-    }
 
-    private void asistente() {
-        this.toogleFAB();
+        startActivity(new Intent(getContext(), SearchActivity.class));
     }
 
     private void toogleFAB() {

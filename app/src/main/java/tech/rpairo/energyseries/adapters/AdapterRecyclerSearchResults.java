@@ -17,7 +17,7 @@ import tech.rpairo.energyseries.model.Serie;
 /**
  * Created by Raul on 24/6/16.
  */
-public class AdapterRecyclerSeries extends RecyclerView.Adapter<ViewHolderSeries> {
+public class AdapterRecyclerSearchResults extends RecyclerView.Adapter<ViewHolderSeriesSearch> {
 
     //region Variables
     private List<Serie> items;
@@ -25,30 +25,29 @@ public class AdapterRecyclerSeries extends RecyclerView.Adapter<ViewHolderSeries
     //endregion
 
     //region Constructores
-    public AdapterRecyclerSeries(List<Serie> items, Context context) {
+    public AdapterRecyclerSearchResults(List<Serie> items, Context context) {
         this.items = items;
         this.context = context;
     }
 
     @Override
-    public ViewHolderSeries onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public ViewHolderSeriesSearch onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.layout_serie, viewGroup, false);
+                .inflate(R.layout.layout_item_search, viewGroup, false);
 
-        return new ViewHolderSeries(view);
+        return new ViewHolderSeriesSearch(view);
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolderSeries viewHolderSeries, int i) {
+    public void onBindViewHolder(ViewHolderSeriesSearch viewHolderSearchSeries, int i) {
 
         Glide.with(this.context)
-                .load(this.items.get(i).getPoster())
-                .override(350, 400)
-                .into(viewHolderSeries.poster);
+                .load(this.items.get(i).getFanArt())
+                .into(viewHolderSearchSeries.backdrop);
 
-        viewHolderSeries.titulo.setText(this.items.get(i).getTitle());
+        viewHolderSearchSeries.titulo.setText(this.items.get(i).getTitle());
 
-        viewHolderSeries.poster.setOnClickListener(new View.OnClickListener() {
+        viewHolderSearchSeries.backdrop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -66,6 +65,8 @@ public class AdapterRecyclerSeries extends RecyclerView.Adapter<ViewHolderSeries
     public void addAll(ArrayList<Serie> series) {
         if (series == null)
             throw new NullPointerException("No puedes pasar una lista nula");
+
+        this.items = new ArrayList<>();
 
         this.items.addAll(series);
         this.notifyDataSetChanged();

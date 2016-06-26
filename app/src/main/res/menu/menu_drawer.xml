@@ -5,6 +5,6 @@
             android:id="@+id/item_series"
             android:checked="true"
             android:icon="@drawable/ic_tv_black_48dp"
-            android:title="@string/item_series" />
+            android:title="@string/navigationview_item_series" />
     </group>
 </menu>

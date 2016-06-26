@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/coordinator_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryLight">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/parent_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:context=".activities.SearchActivity">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_series_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/recycler_search_inset"
+            android:layout_marginStart="@dimen/recycler_search_inset"
+            android:clipToPadding="false"
+            android:paddingTop="@dimen/recycler_search_padding_top" />
+
+        <com.arlib.floatingsearchview.FloatingSearchView
+            android:id="@+id/floating_search_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:floatingSearch_dimBackground="false"
+            app:floatingSearch_dismissOnOutsideTouch="true"
+            app:floatingSearch_leftActionMode="showSearch"
+            app:floatingSearch_menu="@menu/menu_searchview"
+            app:floatingSearch_menuItemIconColor="@color/colorPrimary"
+            app:floatingSearch_searchBarMarginLeft="@dimen/recycler_search_inset"
+            app:floatingSearch_searchBarMarginRight="@dimen/recycler_search_inset"
+            app:floatingSearch_searchBarMarginTop="@dimen/recycler_search_inset"
+            app:floatingSearch_searchHint="@string/searchview_hint"
+            app:floatingSearch_showSearchKey="true"
+            app:floatingSearch_suggestionsListAnimDuration="250"
+            app:theme="@style/SearchView" />
+
+    </RelativeLayout>
+    
+</android.support.design.widget.CoordinatorLayout>
