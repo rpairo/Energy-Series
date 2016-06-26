@@ -24,4 +24,13 @@
         <item name="colorControlActivated">@color/colorPrimary</item>
     </style>
 
+    <!-- Estilos del AppBar Info -->
+    <style name="Base.CustomActionBar" parent="AppTheme">
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="windowActionBarOverlay">true</item>
+        <item name="colorControlNormal">@color/white</item>
+    </style>
+
+    <style name="Theme.CustomActionBar" parent="Base.CustomActionBar" />
+
 </resources>

@@ -1,6 +1,8 @@
 package tech.rpairo.energyseries.adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import tech.rpairo.energyseries.R;
+import tech.rpairo.energyseries.activities.InfoActivity;
 import tech.rpairo.energyseries.model.Serie;
 
 /**
@@ -39,7 +42,7 @@ public class AdapterRecyclerSeries extends RecyclerView.Adapter<ViewHolderSeries
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolderSeries viewHolderSeries, int i) {
+    public void onBindViewHolder(final ViewHolderSeries viewHolderSeries, final int i) {
 
         Glide.with(this.context)
                 .load(this.items.get(i).getPoster())
@@ -51,7 +54,7 @@ public class AdapterRecyclerSeries extends RecyclerView.Adapter<ViewHolderSeries
         viewHolderSeries.poster.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                launchInfoActivity(i);
             }
         });
     }
@@ -63,6 +66,18 @@ public class AdapterRecyclerSeries extends RecyclerView.Adapter<ViewHolderSeries
     //endregion
 
     //region Funciones auxiliares
+    private void launchInfoActivity(int position) {
+
+        Intent intent = new Intent(context, InfoActivity.class);
+
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(InfoActivity.PARCELABLE_SERIE, items.get(position));
+
+        intent.putExtras(bundle);
+
+        context.startActivity(intent);
+    }
+
     public void addAll(ArrayList<Serie> series) {
         if (series == null)
             throw new NullPointerException("No puedes pasar una lista nula");

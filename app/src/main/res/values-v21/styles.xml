@@ -8,4 +8,6 @@
 
     <style name="Theme.Energy" parent="AppTheme.Material" />
 
+    <!-- Estilos del AppBar Info -->
+    <style name="Theme.CustomActionBar" parent="Base.CustomActionBar" />
 </resources>

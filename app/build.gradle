@@ -32,4 +32,5 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.github.arimorty:floatingsearchview:2.0.1'
     compile files('libs/TVShowCatalog.jar')
+    compile 'com.android.support:palette-v7:24.0.0'
 }
