@@ -98,6 +98,7 @@ public class FragmentSeries extends Fragment {
     private void poblarViewPager(ViewPager viewPager) {
         AdapterFragmentsSeries adapter = new AdapterFragmentsSeries(this.getFragmentManager());
         adapter.addFragment(new FragmentSeriesPopulares(), this.getString(R.string.tab_series_populares));
+        adapter.addFragment(new FragmentSeriesToday(), this.getString(R.string.tab_series_today));
         adapter.addFragment(new FragmentSeriesEnEmision(), this.getString(R.string.tab_series_en_emision));
         adapter.addFragment(new FragmentSeriesMejorValoradas(), this.getString(R.string.tab_series_mejor_valoradas));
 

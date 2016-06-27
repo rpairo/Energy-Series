@@ -10,6 +10,7 @@
 
     <!-- TabLayout -->
     <string name="tab_series_populares">Populares</string>
+    <string name="tab_series_today">Hoy</string>
     <string name="tab_series_en_emision">En emisión</string>
     <string name="tab_series_mejor_valoradas">Mejor valoradas</string>
 

@@ -25,6 +25,9 @@ public interface ApiService {
     @GET(ApiConstants.PATH_VERSION + ApiConstants.PATH_GET_SHOWS_TOP_RATED)
     Call<ResponseSeries> getSeriesMejorValoradas(@Query(ApiConstants.PARAM_LANGUAGE) String lenguaje, @Query(ApiConstants.PARAM_API_KEY) String apiKey);
 
+    @GET(ApiConstants.PATH_VERSION + ApiConstants.PATH_GET_SHOWS_TODAY)
+    Call<ResponseSeries> getSeriesToday(@Query(ApiConstants.PARAM_LANGUAGE) String lenguaje, @Query(ApiConstants.PARAM_TIMEZONE) String timezone, @Query(ApiConstants.PARAM_API_KEY) String apiKey);
+
     @GET(ApiConstants.PATH_VERSION + ApiConstants.PATH_GET_SHOWS_SEARCH_TITLE)
     Call<ResponseSeries> getSerieSearchByTitle(@Query(ApiConstants.PARAM_QUERY) String title, @Query(ApiConstants.PARAM_LANGUAGE) String lenguaje, @Query(ApiConstants.PARAM_API_KEY) String apiKey);
 

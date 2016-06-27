@@ -31,6 +31,7 @@ public class FragmentSeriesMaster extends Fragment implements Callback<ResponseS
     protected static final int SERIES_POPULARES = 1;
     protected static final int SERIES_EN_EMISION = 2;
     protected static final int SERIES_MEJOR_VALORADAS = 3;
+    protected static final int SERIES_TODAY = 4;
     //endregion
 
     //region RecyclerView
@@ -70,6 +71,10 @@ public class FragmentSeriesMaster extends Fragment implements Callback<ResponseS
             case SERIES_MEJOR_VALORADAS:
                 call = ApiAdapter.getApiService()
                         .getSeriesMejorValoradas("es", ApiConstants.API_KEY);
+                break;
+            case SERIES_TODAY:
+                call = ApiAdapter.getApiService()
+                        .getSeriesToday("es", "ES", ApiConstants.API_KEY);
                 break;
         }
 
