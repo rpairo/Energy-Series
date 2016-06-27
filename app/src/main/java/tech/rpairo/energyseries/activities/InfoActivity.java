@@ -43,6 +43,7 @@ public class InfoActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private AppBarLayout appBarLayout;
     private TabLayout tabs;
+    private Speaker speaker;
     //endregion
 
     //region Constructores
@@ -55,7 +56,7 @@ public class InfoActivity extends AppCompatActivity {
         this.floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Speaker speaker = new Speaker(getBaseContext());
+                speaker = new Speaker(getBaseContext());
                 speaker.habla(serie.getDescripcion());
             }
         });
@@ -206,6 +207,13 @@ public class InfoActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (this.speaker != null)
+            this.speaker.cerrar();
     }
     //endregion
 }
