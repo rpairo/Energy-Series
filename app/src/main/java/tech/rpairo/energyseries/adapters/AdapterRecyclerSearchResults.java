@@ -53,7 +53,7 @@ public class AdapterRecyclerSearchResults extends RecyclerView.Adapter<ViewHolde
         viewHolderSearchSeries.backdrop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                launchInfoActivity(i);
+                launchActivity(i);
             }
         });
     }
@@ -65,7 +65,7 @@ public class AdapterRecyclerSearchResults extends RecyclerView.Adapter<ViewHolde
     //endregion
 
     //region Funciones auxiliares
-    private void launchInfoActivity(int position) {
+    private void launchActivity(int position) {
 
         Intent intent = new Intent(context, InfoActivity.class);
 

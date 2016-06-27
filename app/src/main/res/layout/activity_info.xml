@@ -9,7 +9,8 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager_serie_info"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <!-- App Bar -->
     <android.support.design.widget.AppBarLayout
@@ -28,9 +29,9 @@
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleMarginBottom="20dp"
             app:expandedTitleMarginEnd="64dp"
             app:expandedTitleMarginStart="48dp"
-
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <!-- Imagen del detalle -->
@@ -49,9 +50,21 @@
                 android:background="@android:color/transparent"
                 app:layout_collapseMode="pin" />
 
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tabs_info"
+                android:fitsSystemWindows="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                app:tabGravity="center"
+                app:tabMode="scrollable" />
+
         </android.support.design.widget.CollapsingToolbarLayout>
 
+
     </android.support.design.widget.AppBarLayout>
+
 
     <!-- FAB -->
     <android.support.design.widget.FloatingActionButton

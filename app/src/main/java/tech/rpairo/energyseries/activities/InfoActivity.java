@@ -2,10 +2,14 @@ package tech.rpairo.energyseries.activities;
 
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
@@ -20,6 +24,9 @@ import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 
 import tech.rpairo.energyseries.R;
+import tech.rpairo.energyseries.adapters.AdapterFragmentsSeries;
+import tech.rpairo.energyseries.fragments.FragmentInfoActores;
+import tech.rpairo.energyseries.fragments.FragmentInfoTemporadas;
 import tech.rpairo.energyseries.model.Serie;
 
 /**
@@ -32,6 +39,9 @@ public class InfoActivity extends AppCompatActivity {
     public final static String PARCELABLE_SERIE = "SERIE";
     private ImageView backdrop;
     private FloatingActionButton floatingActionButton;
+    private ViewPager viewPager;
+    private AppBarLayout appBarLayout;
+    private TabLayout tabs;
     //endregion
 
     //region Constructores
@@ -46,6 +56,10 @@ public class InfoActivity extends AppCompatActivity {
         this.serie = getIntent().getExtras().getParcelable(PARCELABLE_SERIE);
 
         this.backdrop = (ImageView) findViewById(R.id.backdrop_serie_info);
+
+        this.tabs = (TabLayout) findViewById(R.id.tabs_info);
+
+        this.viewPager = (ViewPager) findViewById(R.id.viewpager_serie_info);
 
         this.cargarBackdrop();
     }
@@ -71,6 +85,10 @@ public class InfoActivity extends AppCompatActivity {
                             Palette.Swatch mutedSwatch = p.getMutedSwatch();
                             Palette.Swatch mutedDarkSwatch = p.getDarkMutedSwatch();
 
+                            Palette.Swatch lightVibrantSwatch = p.getLightVibrantSwatch();
+                            Palette.Swatch lightMutedSwatch = p.getLightMutedSwatch();
+
+
                             /*ViewPager vp = (ViewPager) findViewById(R.id.htab_viewpager);
 
                             if (vibrantDarkSwatch != null)
@@ -78,8 +96,14 @@ public class InfoActivity extends AppCompatActivity {
                             else if (mutedDarkSwatch != null)
                                 vp.setBackgroundColor(mutedDarkSwatch.getRgb());*/
 
+                            if (lightVibrantSwatch != null)
+                                tabs.setSelectedTabIndicatorColor(lightVibrantSwatch.getRgb());
+                            else if (lightMutedSwatch != null)
+                                tabs.setSelectedTabIndicatorColor(lightMutedSwatch.getRgb());
+
                             if (vibrantSwatch != null)
                                 floatingActionButton.setBackgroundTintList(ColorStateList.valueOf(vibrantSwatch.getRgb()));
+
                             else if (mutedSwatch != null)
                                 floatingActionButton.setBackgroundTintList(ColorStateList.valueOf(mutedSwatch.getRgb()));
                         }
@@ -101,17 +125,11 @@ public class InfoActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_serie_info);
         setSupportActionBar(toolbar);
 
-        if (getSupportActionBar() != null) {
-
-            // Habilita el home button
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-            // Elimina texto del toolbar
+        if (getSupportActionBar() != null)
             getSupportActionBar().setDisplayShowTitleEnabled(false);
-        }
 
         // Vuelve visible la AppBar
-        final AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.appbar_serie_info);
+        this.appBarLayout = (AppBarLayout) findViewById(R.id.appbar_serie_info);
 
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.anim_alpha);
         animation.reset();
@@ -125,6 +143,8 @@ public class InfoActivity extends AppCompatActivity {
             public void onAnimationEnd(Animation animation) {
                 appBarLayout.setVisibility(View.VISIBLE);
                 floatingActionButton.show();
+
+                insertarTabs();
             }
 
             @Override
@@ -135,6 +155,37 @@ public class InfoActivity extends AppCompatActivity {
 
         appBarLayout.clearAnimation();
         appBarLayout.startAnimation(animation);
+    }
+    //endregion
+
+    //region Tabs
+    private void insertarTabs() {
+
+        this.tabs.setTabTextColors(Color.parseColor("#FFFFFF"), Color.parseColor("#FFFFFF"));
+
+        poblarViewPager();
+    }
+
+    private void poblarViewPager() {
+
+        Bundle bundle = new Bundle();
+        bundle.putInt(FragmentInfoTemporadas.KEY_BUNDLE, this.serie.getId());
+
+        Fragment fragmentTemporadas = new FragmentInfoTemporadas();
+        fragmentTemporadas.setArguments(bundle);
+
+        Fragment fragmentActores = new FragmentInfoActores();
+        fragmentActores.setArguments(bundle);
+
+        AdapterFragmentsSeries adapter = new AdapterFragmentsSeries(getSupportFragmentManager());
+        adapter.addFragment(fragmentTemporadas, "Temporadas");
+        adapter.addFragment(fragmentActores, "Actores");
+
+        this.viewPager.setAdapter(adapter);
+
+        this.tabs.setupWithViewPager(this.viewPager);
+
+        this.tabs.setTabMode(TabLayout.MODE_SCROLLABLE);
     }
     //endregion
 

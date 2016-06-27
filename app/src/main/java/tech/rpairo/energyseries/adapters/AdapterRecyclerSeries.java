@@ -23,8 +23,8 @@ import tech.rpairo.energyseries.model.Serie;
 public class AdapterRecyclerSeries extends RecyclerView.Adapter<ViewHolderSeries> {
 
     //region Variables
-    private List<Serie> items;
-    private Context context;
+    protected List<Serie> items;
+    protected Context context;
     //endregion
 
     //region Constructores
@@ -54,7 +54,7 @@ public class AdapterRecyclerSeries extends RecyclerView.Adapter<ViewHolderSeries
         viewHolderSeries.poster.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                launchInfoActivity(i);
+                launchActivity(i);
             }
         });
     }
@@ -66,7 +66,7 @@ public class AdapterRecyclerSeries extends RecyclerView.Adapter<ViewHolderSeries
     //endregion
 
     //region Funciones auxiliares
-    private void launchInfoActivity(int position) {
+    protected void launchActivity(int position) {
 
         Intent intent = new Intent(context, InfoActivity.class);
 

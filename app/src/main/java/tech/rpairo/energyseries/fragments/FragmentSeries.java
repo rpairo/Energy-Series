@@ -5,15 +5,15 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.getbase.floatingactionbutton.FloatingActionButton;
-import com.getbase.floatingactionbutton.FloatingActionsMenu;
+import android.view.animation.AnimationUtils;
+import android.view.animation.Interpolator;
 
 import tech.rpairo.energyseries.R;
 import tech.rpairo.energyseries.activities.SearchActivity;
@@ -28,7 +28,7 @@ public class FragmentSeries extends Fragment {
     private AppBarLayout appBarLayout;
     private TabLayout tabs;
     private ViewPager viewPager;
-    private FloatingActionsMenu fam;
+    private FloatingActionButton fab;
     //endregion
 
     //region Constructores
@@ -49,9 +49,23 @@ public class FragmentSeries extends Fragment {
         this.tabs.setTabMode(TabLayout.MODE_SCROLLABLE);
 
         //Floating action menu & buttons
-        this.fam = (FloatingActionsMenu) view.findViewById(R.id.fam_series);
+        this.fab = (FloatingActionButton) view.findViewById(R.id.fab_buscar_series);
+        this.fab.setScaleX(0);
+        this.fab.setScaleY(0);
 
-        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab_buscar_series);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            final Interpolator interpolador = AnimationUtils.loadInterpolator(getContext(),
+                    android.R.interpolator.fast_out_slow_in);
+
+            fab.animate().setInterpolator(interpolador);
+        }
+
+        fab.animate()
+                .scaleX(1)
+                .scaleY(1)
+                .setDuration(600)
+                .setStartDelay(1000);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,6 +86,7 @@ public class FragmentSeries extends Fragment {
     //endregion
 
     //region Tabs
+
     private void insertarTabs(ViewGroup container) {
         View padre = (View) container.getParent().getParent();
         this.appBarLayout = (AppBarLayout) padre.findViewById(R.id.appbar_main);
@@ -92,14 +107,8 @@ public class FragmentSeries extends Fragment {
 
     //region FloatActionButton
     private void buscar() {
-        this.toogleFAB();
 
         startActivity(new Intent(getContext(), SearchActivity.class));
-    }
-
-    private void toogleFAB() {
-        if (this.fam.isExpanded())
-            this.fam.collapse();
     }
     //endregion
 }

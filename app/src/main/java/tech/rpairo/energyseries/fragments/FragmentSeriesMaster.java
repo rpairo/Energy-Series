@@ -23,10 +23,10 @@ import tech.rpairo.energyseries.retrofit.response.ResponseSeries;
 public class FragmentSeriesMaster extends Fragment implements Callback<ResponseSeries> {
 
     //region Variables
-    private RecyclerView recycler;
-    private RecyclerView.LayoutManager layoutManager;
-    private AdapterRecyclerSeries adapterRecyclerSeries;
-    private ArrayList<Serie> series;
+    protected RecyclerView recycler;
+    protected RecyclerView.LayoutManager layoutManager;
+    protected AdapterRecyclerSeries adapterRecyclerSeries;
+    protected ArrayList<Serie> series;
 
     protected static final int SERIES_POPULARES = 1;
     protected static final int SERIES_EN_EMISION = 2;
@@ -36,7 +36,7 @@ public class FragmentSeriesMaster extends Fragment implements Callback<ResponseS
     //region RecyclerView
     protected void prepararRecycler(View view, int idRecycler) {
 
-        this.series = new ArrayList<Serie>();
+        this.series = new ArrayList<>();
 
         //Obtención del RecyclerView
         this.recycler = (RecyclerView) view.findViewById(idRecycler);
@@ -59,15 +59,15 @@ public class FragmentSeriesMaster extends Fragment implements Callback<ResponseS
         Call<ResponseSeries> call = null;
 
         switch (request) {
-            case 1:
+            case SERIES_POPULARES:
                 call = ApiAdapter.getApiService()
                         .getSeriesPopulares("es", ApiConstants.API_KEY);
                 break;
-            case 2:
+            case SERIES_EN_EMISION:
                 call = ApiAdapter.getApiService()
                         .getSeriesEnEmision("es", ApiConstants.API_KEY);
                 break;
-            case 3:
+            case SERIES_MEJOR_VALORADAS:
                 call = ApiAdapter.getApiService()
                         .getSeriesMejorValoradas("es", ApiConstants.API_KEY);
                 break;

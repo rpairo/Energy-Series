@@ -60,6 +60,14 @@ public class Serie extends TvShow implements SearchSuggestion {
                 ApiConstants.PATH_SIZE_POSTER +
                 this.fanArt;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     //endregion
 
     //region SearchSuggestion

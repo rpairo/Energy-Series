@@ -20,4 +20,8 @@
     <!-- Snackbar -->
     <string name="snackbar_search_voz">No está disponible el reconocimiento de voz</string>
 
+    <!-- Temporada -->
+    <string name="temporada">Temporada</string>
+    <string name="especial">Especial</string>
+
 </resources>
