@@ -1,6 +1,7 @@
 package tech.rpairo.energyseries.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 
 import com.bumptech.glide.Glide;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import tech.rpairo.energyseries.R;
+import tech.rpairo.energyseries.activities.CapitulosActivity;
 import tech.rpairo.energyseries.model.Temporada;
 
 /**
@@ -18,13 +20,15 @@ public class AdapterRecyclerInfoTemporadas extends AdapterRecyclerSeries {
 
     //region Variables
     private List<Temporada> temporadas;
+    private int serieID;
     //endregion
 
     //region Constructores
-    public AdapterRecyclerInfoTemporadas(List<Temporada> items, Context context) {
+    public AdapterRecyclerInfoTemporadas(List<Temporada> items, Context context, int serieID) {
         super(null, context);
 
         this.temporadas = items;
+        this.serieID = serieID;
     }
 
     @Override
@@ -64,6 +68,10 @@ public class AdapterRecyclerInfoTemporadas extends AdapterRecyclerSeries {
     @Override
     protected void launchActivity(int position) {
 
+        Intent intent = new Intent(context, CapitulosActivity.class);
+        intent.putExtra(CapitulosActivity.ID_BUNDLE, this.serieID);
+        intent.putExtra(CapitulosActivity.NUM_TEMPORADA, this.temporadas.get(position).getNumberSeason());
+        context.startActivity(intent);
     }
 
     public void addAllTemporadas(ArrayList<Temporada> temporadas) {

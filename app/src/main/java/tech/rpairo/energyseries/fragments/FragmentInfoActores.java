@@ -97,8 +97,11 @@ public class FragmentInfoActores extends Fragment implements Callback<ResponseAc
 
     @Override
     public void onResponse(Call<ResponseActores> call, Response<ResponseActores> response) {
-        this.actores = response.body().getActores();
-        this.adapterRecyclerInfoActores.addAllActores(this.actores);
+
+        if (response.body() != null) {
+            this.actores = response.body().getActores();
+            this.adapterRecyclerInfoActores.addAllActores(this.actores);
+        }
     }
 
     @Override

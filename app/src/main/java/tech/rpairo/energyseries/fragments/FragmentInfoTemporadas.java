@@ -71,7 +71,7 @@ public class FragmentInfoTemporadas extends Fragment implements Callback<Respons
         this.layoutManager = new GridLayoutManager(view.getContext(), 2);
         this.recycler.setLayoutManager(this.layoutManager);
 
-        this.adapterReyclerInfoTemporadas = new AdapterRecyclerInfoTemporadas(this.temporadas, view.getContext());
+        this.adapterReyclerInfoTemporadas = new AdapterRecyclerInfoTemporadas(this.temporadas, view.getContext(), this.serieID);
         this.recycler.setAdapter(this.adapterReyclerInfoTemporadas);
         this.recycler.setItemAnimator(new DefaultItemAnimator());
 
@@ -97,8 +97,11 @@ public class FragmentInfoTemporadas extends Fragment implements Callback<Respons
 
     @Override
     public void onResponse(Call<ResponseTemporadas> call, Response<ResponseTemporadas> response) {
-        this.temporadas = response.body().getTemporadas();
-        this.adapterReyclerInfoTemporadas.addAllTemporadas(this.temporadas);
+
+        if (response.body() != null) {
+            this.temporadas = response.body().getTemporadas();
+            this.adapterReyclerInfoTemporadas.addAllTemporadas(this.temporadas);
+        }
     }
 
     @Override

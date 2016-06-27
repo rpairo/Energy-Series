@@ -27,5 +27,6 @@ public class ApiConstants {
     public static final String PATH_GET_SHOWS_POPULAR = "/tv/popular";
     public static final String PATH_GET_SHOWS_TOP_RATED = "/tv/top_rated";
     public static final String PATH_GET_SHOWS_CREDITS = "/tv/{id}/credits";
+    public static final String PATH_GET_SHOWS_EPISODES = "/tv/{id}/season/{se}";
     //endregion
 }

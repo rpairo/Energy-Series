@@ -84,8 +84,11 @@ public class FragmentSeriesMaster extends Fragment implements Callback<ResponseS
 
     @Override
     public void onResponse(Call<ResponseSeries> call, Response<ResponseSeries> response) {
-        this.series = response.body().getSeries();
-        this.adapterRecyclerSeries.addAll(this.series);
+
+        if (response.body() != null) {
+            this.series = response.body().getSeries();
+            this.adapterRecyclerSeries.addAll(this.series);
+        }
     }
 
     @Override

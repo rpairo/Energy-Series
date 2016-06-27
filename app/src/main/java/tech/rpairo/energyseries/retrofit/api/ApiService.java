@@ -5,6 +5,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import tech.rpairo.energyseries.retrofit.response.ResponseActores;
+import tech.rpairo.energyseries.retrofit.response.ResponseCapitulos;
 import tech.rpairo.energyseries.retrofit.response.ResponseSeries;
 import tech.rpairo.energyseries.retrofit.response.ResponseTemporadas;
 
@@ -36,5 +37,8 @@ public interface ApiService {
 
     @GET(ApiConstants.PATH_VERSION + ApiConstants.PATH_GET_SHOWS_CREDITS)
     Call<ResponseActores> getActoresSerie(@Path("id") int idSerie, @Query(ApiConstants.PARAM_LANGUAGE) String lenguaje, @Query(ApiConstants.PARAM_API_KEY) String apiKey);
+
+    @GET(ApiConstants.PATH_VERSION + ApiConstants.PATH_GET_SHOWS_EPISODES)
+    Call<ResponseCapitulos> getSerieCapitulos(@Path("id") int idSerie, @Path("se") String temporada, @Query(ApiConstants.PARAM_LANGUAGE) String lenguaje, @Query(ApiConstants.PARAM_API_KEY) String apiKey);
     //endregion
 }

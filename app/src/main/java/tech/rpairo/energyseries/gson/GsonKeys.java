@@ -22,5 +22,12 @@ public class GsonKeys {
     public static final String PERSONAJE = "character";
     public static final String NOMBRE_ACTOR = "name";
     public static final String FOTO_ACTOR = "profile_path";
+
+    //Series
+    public static final String CAPITULOS = "episodes";
+    public static final String BACKDROP_CAPITULO = "still_path";
+    public static final String VALORACION = "vote_average";
+    public static final String TITULO_CAPITULO = "name";
+
     //endregion
 }
