@@ -8,7 +8,10 @@ import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import tech.rpairo.energyseries.R;
@@ -17,7 +20,7 @@ import tech.rpairo.energyseries.model.Capitulo;
 /**
  * Created by Raul on 27/6/16.
  */
-public class AdapterRecyclerInfoCapitulos extends RecyclerView.Adapter<ViewHolderSeriesSearch> {
+public class AdapterRecyclerInfoCapitulos extends RecyclerView.Adapter<ViewHolderCapitulos> {
 
     //region Variables
     private List<Capitulo> capitulos;
@@ -31,21 +34,32 @@ public class AdapterRecyclerInfoCapitulos extends RecyclerView.Adapter<ViewHolde
     }
 
     @Override
-    public ViewHolderSeriesSearch onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+    public ViewHolderCapitulos onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.layout_item_search, viewGroup, false);
+                .inflate(R.layout.layout_capitulo, viewGroup, false);
 
-        return new ViewHolderSeriesSearch(view);
+        return new ViewHolderCapitulos(view);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolderSeriesSearch viewHolderSearchSeries, final int i) {
+    public void onBindViewHolder(ViewHolderCapitulos viewHolderCapitulos, final int i) {
 
         Glide.with(this.context)
                 .load(this.capitulos.get(i).getImagen())
-                .into(viewHolderSearchSeries.backdrop);
+                .into(viewHolderCapitulos.backdrop);
 
-        viewHolderSearchSeries.titulo.setText(this.capitulos.get(i).getNombre());
+        Glide.with(this.context)
+                .load(R.drawable.ic_star_white_24dp)
+                .into(viewHolderCapitulos.icono);
+
+
+        try {
+            viewHolderCapitulos.titulo.setText(this.capitulos.get(i).getNombre());
+            viewHolderCapitulos.valoracion.setText(this.capitulos.get(i).getValoracion().substring(0, 3));
+            viewHolderCapitulos.fecha.setText(formateDateFromstring("yyyy-MM-dd", "dd/MM/yyyy", this.capitulos.get(i).getDate()));
+        } catch (Exception e) {
+
+        }
     }
 
     @Override
@@ -55,6 +69,23 @@ public class AdapterRecyclerInfoCapitulos extends RecyclerView.Adapter<ViewHolde
     //endregion
 
     //region Funciones auxiliares
+    private String formateDateFromstring(String inputFormat, String outputFormat, String inputDate) {
+
+        Date parsed = null;
+        String outputDate = "";
+
+        SimpleDateFormat df_input = new SimpleDateFormat(inputFormat, java.util.Locale.getDefault());
+        SimpleDateFormat df_output = new SimpleDateFormat(outputFormat, java.util.Locale.getDefault());
+
+        try {
+            parsed = df_input.parse(inputDate);
+            outputDate = df_output.format(parsed);
+        } catch (ParseException e) {
+        }
+
+        return outputDate;
+    }
+
     public void addAll(ArrayList<Capitulo> capitulos) {
         if (capitulos == null)
             throw new NullPointerException("No puedes pasar una lista nula");

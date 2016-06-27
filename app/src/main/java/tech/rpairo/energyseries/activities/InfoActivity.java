@@ -28,6 +28,7 @@ import tech.rpairo.energyseries.adapters.AdapterFragmentsSeries;
 import tech.rpairo.energyseries.fragments.FragmentInfoActores;
 import tech.rpairo.energyseries.fragments.FragmentInfoTemporadas;
 import tech.rpairo.energyseries.model.Serie;
+import tech.rpairo.energyseries.speaker.Speaker;
 
 /**
  * Created by Raul on 26/6/16.
@@ -51,6 +52,13 @@ public class InfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_info);
 
         this.floatingActionButton = (FloatingActionButton) findViewById(R.id.fab_serie_info_voz);
+        this.floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Speaker speaker = new Speaker(getBaseContext());
+                speaker.habla(serie.getDescripcion());
+            }
+        });
         this.floatingActionButton.hide();
 
         this.serie = getIntent().getExtras().getParcelable(PARCELABLE_SERIE);
